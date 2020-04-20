@@ -1,28 +1,20 @@
 import React from 'react';
-import Button, { ButtonSize, ButtonType } from './components/Button/Button';
+import Alert from './components/Alert/Alert';
 
 const App: React.FC = () => {
+  const [show, setShow] = React.useState(true);
   return (
     <div className="App">
+      {show && (
+        <Alert
+          title="123"
+          type="success"
+          description="abcde"
+          onClose={() => setShow(false)}
+        />
+      )}
       <header className="App-header">
-        <Button>Hello</Button>
-        <Button disabled>Disabled Button</Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
-          Primary Large
-        </Button>
-        <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>
-          Small Danger
-        </Button>
-        <Button
-          btnType={ButtonType.Link}
-          href="http://www.baidu.com"
-          target="_blank"
-        >
-          Baidu Link
-        </Button>
-        <Button btnType={ButtonType.Link} href="http://www.baidu.com" disabled>
-          Disabled Link
-        </Button>
+        <div>hello</div>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

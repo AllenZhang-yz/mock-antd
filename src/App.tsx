@@ -1,5 +1,8 @@
 import React from 'react';
 import Alert from './components/Alert/Alert';
+import Menu from './components/Menu/Menu';
+import MenuItem from './components/Menu/MenuItem';
+import SubMenu from './components/Menu/SubMenu';
 
 const App: React.FC = () => {
   const [show, setShow] = React.useState(true);
@@ -14,6 +17,17 @@ const App: React.FC = () => {
         />
       )}
       <header className="App-header">
+        <Menu onSelect={() => {}} mode="vertical" defaultOpenSubMenus={['3']}>
+          <MenuItem>cool link 1</MenuItem>
+          <MenuItem disabled>cool link 2</MenuItem>
+          <MenuItem>cool link 3</MenuItem>
+          <SubMenu title="dropdown">
+            <MenuItem>dropdown1</MenuItem>
+            <MenuItem>dropdown2</MenuItem>
+            <MenuItem>dropdown3</MenuItem>
+          </SubMenu>
+          <MenuItem>cool link 4</MenuItem>
+        </Menu>
         <div>hello</div>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.

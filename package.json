@@ -31,13 +31,21 @@
   "scripts": {
     "start": "react-scripts start",
     "clean": "rimraf ./build",
+    "lint": "eslint --ext js,ts,tsx src",
     "build": "npm run clean && npm run build-ts && npm run build-css",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./build/index.css",
+    "test:nowatch": "cross-env CI=true react-scripts test",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "prepublish": "npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test:nowatch && npm run lint"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -68,6 +76,7 @@
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
     "cross-env": "^7.0.2",
+    "husky": "^4.2.5",
     "react-docgen-typescript-loader": "^3.7.2",
     "rimraf": "^3.0.2"
   }

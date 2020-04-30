@@ -1,23 +1,30 @@
 import React from 'react';
+import { library } from '@fortawesome/fontawesome-svg-core';
+
 import Alert from './components/Alert/Alert';
 import Menu from './components/Menu/Menu';
 import MenuItem from './components/Menu/MenuItem';
 import SubMenu from './components/Menu/SubMenu';
+import Icon from './components/Icon/Icon';
+import Upload from './components/Upload/Upload';
+
+import { fas } from '@fortawesome/free-solid-svg-icons';
+library.add(fas);
 
 const App: React.FC = () => {
-  const [show, setShow] = React.useState(true);
   return (
     <div className="App">
-      {show && (
-        <Alert
-          title="123"
-          type="success"
-          description="abcde"
-          onClose={() => setShow(false)}
-        />
-      )}
+      <Alert
+        title="123"
+        type="success"
+        description="abcde"
+        // onClose={() => setShow(false)}
+      />
+      <Upload action="https://jsonplaceholder.typicode.com/posts/" />
       <header className="App-header">
-        <Menu onSelect={() => {}} mode="vertical" defaultOpenSubMenus={['3']}>
+        <Icon icon="coffee" size="10x" theme="primary" />
+        <Icon icon="arrow-down" />
+        <Menu onSelect={() => {}} defaultOpenSubMenus={['3']}>
           <MenuItem>cool link 1</MenuItem>
           <MenuItem disabled>cool link 2</MenuItem>
           <MenuItem>cool link 3</MenuItem>

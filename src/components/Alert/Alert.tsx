@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import Icon from '../Icon/Icon';
+import Transition from '../Transition/Transition';
 export type AlertType = 'success' | 'default' | 'danger' | 'warning';
 
 export interface AlertProps {
@@ -24,15 +26,21 @@ const Alert: React.FC<AlertProps> = (props) => {
     setHide(true);
   };
   return (
-    <div className={classes}>
-      <span className={titleClass}>{title}</span>
-      {description && <p className="antd-alert-desc">{description}</p>}
-      {closable && (
-        <span className="antd-alert-close" onClick={handleClose}>
-          close
-        </span>
-      )}
-    </div>
+    <Transition in={!hide} timeout={300} animation="zoom-in-right">
+      <div className={classes}>
+        <span className={titleClass}>{title}</span>
+        {description && <p className="antd-alert-desc">{description}</p>}
+        {closable && (
+          <span
+            className="antd-alert-close"
+            onClick={handleClose}
+            data-testid="icon"
+          >
+            <Icon icon="times-circle" />
+          </span>
+        )}
+      </div>
+    </Transition>
   );
 };
 

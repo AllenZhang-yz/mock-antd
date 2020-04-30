@@ -1,6 +1,12 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, getByTestId } from '@testing-library/react';
 import Alert, { AlertProps } from './Alert';
+
+jest.mock('../Icon/Icon', () => {
+  return (props: any) => {
+    return <span>{props.icon}</span>;
+  };
+});
 
 const testProps: AlertProps = {
   title: 'hello',
@@ -21,7 +27,7 @@ describe('test Alert Component', () => {
     expect(container.querySelector('.antd-alert')).toHaveClass(
       'antd-alert-default'
     );
-    fireEvent.click(getByText('close'));
+    fireEvent.click(getByText('times-circle'));
     expect(testProps.onClose).toHaveBeenCalled();
   });
   it('should render the correct Alert based on different type and desc', () => {

@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Button, { ButtonProps, ButtonSize, ButtonType } from './Button';
+import Button, { ButtonProps } from './Button';
 
 const defaultProps = {
   onClick: jest.fn(),
 };
 
 const testProps: ButtonProps = {
-  btnType: ButtonType.Danger,
-  size: ButtonSize.Small,
+  btnType: 'danger',
+  size: 'sm',
   className: 'test',
 };
 
@@ -36,7 +36,7 @@ describe('test Button component', () => {
   });
   it('should render a link when btnType equals link and href is provided', () => {
     const wrapper = render(
-      <Button btnType={ButtonType.Link} href="http://123.com">
+      <Button btnType="link" href="http://123.com">
         Link
       </Button>
     );
